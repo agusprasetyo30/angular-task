@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row justify-content-center mt-2">
+    <div class="col-10">
+      <div class="bg-primary p-3 pt-4 text-white text-center">
+        <h5>TUGAS 3 LAIN</h5>
+      </div>
+      <div class="card border-primary p-3">
+        <input type="text" class="form-control" placeholder="Input server name" #inputData>
+        <div class="btn-group justify-content-center mt-3">
+          <button class="btn btn-primary btn-block" (click)="addServerName(inputData)">Add server</button>
+        </div>
+        <div class="btn-group justify-content-center mt-1">
+            <button class="btn btn-warning" (click)="addLogServer()">Add Log</button>
+          <button class="btn btn-info" (click)="showLogServer()">Show Log</button>
+        </div>
+      </div>
+      Server Name : {{serverName}}
+      <p>Jumlah : {{arrDataCount}}</p>
+      <div *ngIf="showData;else elseTemplate">
+        <div *ngFor="let data of arrData" class="pt-2 pb-2 text-white text-center mb-1" [ngClass]="{'bg-primary': data.status === 'Online', 'bg-danger': data.status === 'Offline' }">
+         Server <b>{{data.name}}</b> is <b>{{data.status}}</b>
+        </div>
+      </div>
+      <ng-template #elseTemplate>
+        <div *ngIf="dataAdd ; else elseTemplate2">
+          <p class="pt-2 pb-2 bg-success text-white text-center">Add log data pressed !!</p>
+        </div>
+        <ng-template #elseTemplate2>
+          <p class="pt-2 pb-2 bg-danger text-white text-center">Show log not pressed</p>
+        </ng-template>
+      </ng-template>
+
+    </div>
+  </div>
+</div>
